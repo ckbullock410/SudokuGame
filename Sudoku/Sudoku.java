@@ -15,81 +15,8 @@ public class Sudoku {
             //will provide a 50 percent chance of placing a number in a square
              for (int i = 0; i < 9; i++) {
                 for (int j = 0; j < 9; j++) {
-                   int myRandom = (int) Math.floor(Math.random()*11);
-                   if (myRandom == 0){
-                       //do nothing
-                       continue;
-                   } else if (myRandom == 1){
-                        board[i][j] = 1;
-                   } else if (myRandom == 2){
-                        board[i][j] = 2;
-                   } else if (myRandom == 3){
-                        board[i][j] = 3;
-                   } else if (myRandom == 4){
-                        board[i][j] = 4;
-                   } else if (myRandom == 5){
-                        board[i][j] = 5;
-                   } else if (myRandom == 6){
-                        board[i][j] = 6;
-                   } else if (myRandom == 7){
-                        board[i][j] = 7;
-                   } else if (myRandom == 8){
-                        board[i][j] = 8;
-                   } else if (myRandom == 9){
-                        board[i][j] = 9;
-                   }
-                   
-                   //check to see if is a duplicate of a number in the row/column/block
-                   //row
-                   boolean failed = false;
-                   for (int k = 0; k < j; k++){
-                        if (board[i][k] == board[i][j]){
-                        //if the row contains this number already, redo the random generation
-                            board[i][j] = 0;
-                            j--;
-                            failed = true;
-                       }
-                       if (failed) break;
-                   }
-                   if (failed) break;
-                   //check column
-                   for (int a = 0; a < i; a++) {
-                        if (board[a][j] == board[i][j]){
-                        //if the column contains this number already, redo the random generation
-                            board[i][j] = 0;
-                            j--;
-                            failed = true;
-                       }
-                       if (failed) break;
-                   }
-                   if (failed) break;
-                   
-                   //now check which block of 9 this square belongs to
-                   int verticalStart = (int) (Math.floor(i/3))*3;        //options 0,1,2
-                   int horizontalStart = (int) (Math.floor(j/3))*3;
-
-                   for (int b = verticalStart; b < (verticalStart + 3); b++) {
-                       for (int c = horizontalStart; c < (horizontalStart + 3); c++) {
-                            if (b == i && c == j){
-                                continue;
-                            } else if (board[b][c] == board[i][j]){
-                                board[i][j] = 0;
-                                j--;                                
-                                failed = true;
-                            }
-                            if(failed) break;
-                       }
-                       if (failed) break;
-                   }
-                   if (failed) break;
-                }
-            } 
-         } else {
-            //will provide 25% chance of a square having a number
-             for (int i = 0; i < 9; i++) {
-                for (int j = 0; j < 9; j++) {
                    int myRandom = (int) Math.floor(Math.random()*20);
-                   if (myRandom < 10){
+                   if (myRandom < 11){
                        //do nothing
                        continue;
                    } else if (myRandom == 11){
@@ -109,6 +36,81 @@ public class Sudoku {
                    } else if (myRandom == 18){
                         board[i][j] = 8;
                    } else if (myRandom == 19){
+                        board[i][j] = 9;
+                   }
+                   
+                   //check to see if is a duplicate of a number in the row/column/block
+                   //row
+                   boolean failed = false;
+                   for (int k = 0; k < j; k++){
+                        if (board[i][k] == board[i][j]){
+                        //if the row contains this number already, redo the random generation
+                            board[i][j] = 0;
+                            j--;
+                            failed = true;
+                       }
+                       if (failed) break;
+                   }
+                   if (failed) continue;
+                   //check column
+                   for (int a = 0; a < i; a++) {
+                        if (board[a][j] == board[i][j]){
+                        //if the column contains this number already, redo the random generation
+                            board[i][j] = 0;
+                            j--;
+                            failed = true;
+                       }
+                       if (failed) break;
+                   }
+                   if (failed) continue;
+                   
+
+                   //now check which block of 9 this square belongs to
+                   int verticalStart = (int) (Math.floor(i/3))*3;        //options 0,1,2
+                   int horizontalStart = (int) (Math.floor(j/3))*3;
+
+                   for (int b = verticalStart; b < (verticalStart + 3); b++) {
+                       for (int c = horizontalStart; c < (horizontalStart + 3); c++) {
+                            if (b == i && c == j){
+                                continue;
+                            } else if (board[b][c] == board[i][j]){
+                                board[i][j] = 0;
+                                j--;                                
+                                failed = true;
+                            }
+                            if(failed) break;
+                       }
+                       if (failed) break;
+                   }
+                   
+                   if (failed) continue;
+                }
+            } 
+         } else {
+            //will provide 25% chance of a square having a number
+             for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
+                   int myRandom = (int) Math.floor(Math.random()*30);
+                   if (myRandom < 21){
+                       //do nothing
+                       continue;
+                   } else if (myRandom == 21){
+                        board[i][j] = 1;
+                   } else if (myRandom == 22){
+                        board[i][j] = 2;
+                   } else if (myRandom == 23){
+                        board[i][j] = 3;
+                   } else if (myRandom == 24){
+                        board[i][j] = 4;
+                   } else if (myRandom == 25){
+                        board[i][j] = 5;
+                   } else if (myRandom == 26){
+                        board[i][j] = 6;
+                   } else if (myRandom == 27){
+                        board[i][j] = 7;
+                   } else if (myRandom == 28){
+                        board[i][j] = 8;
+                   } else if (myRandom == 29){
                         board[i][j] = 9;
                    }
                    
@@ -183,7 +185,7 @@ public class Sudoku {
                 for (int j = 0; j < 9; j++) {
                     //column
                    int myRandom = (int) Math.floor(Math.random()*20);
-                   if (myRandom < 10){
+                   if (myRandom < 11){
                        //do nothing
                    } else if (myRandom == 11){
                         board[i][j] = 1;
@@ -248,26 +250,26 @@ public class Sudoku {
             //will provide 25% chance of a square having a number
              for (int i = 0; i < 9; i++) {
                 for (int j = 0; j < 9; j++) {
-                   int myRandom = (int) Math.floor(Math.random()*50);
+                   int myRandom = (int) Math.floor(Math.random()*30);
                    if (myRandom < 10){
                        //do nothing
-                   } else if (myRandom == 11){
+                   } else if (myRandom == 21){
                         board[i][j] = 1;
-                   } else if (myRandom == 12){
+                   } else if (myRandom == 22){
                         board[i][j] = 2;
-                   } else if (myRandom == 13){
+                   } else if (myRandom == 23){
                         board[i][j] = 3;
-                   } else if (myRandom == 14){
+                   } else if (myRandom == 24){
                         board[i][j] = 4;
-                   } else if (myRandom == 15){
+                   } else if (myRandom == 25){
                         board[i][j] = 5;
-                   } else if (myRandom == 16){
+                   } else if (myRandom == 26){
                         board[i][j] = 6;
-                   } else if (myRandom == 17){
+                   } else if (myRandom == 27){
                         board[i][j] = 7;
-                   } else if (myRandom == 18){
+                   } else if (myRandom == 28){
                         board[i][j] = 8;
-                   } else if (myRandom == 19){
+                   } else if (myRandom == 29){
                         board[i][j] = 9;
                    }
                    
